@@ -20,6 +20,20 @@ io.on('connection', (socket)=>{
   //   text: "learing socket...",
   //   createdAt:123
   // });
+
+  socket.emit('newMessage',{
+    from: "Admin",
+    text: "welcoome to Chat app",
+    createdAt: new Date().getTime()
+  });
+  // socket.broadcast.emit from admin to the new user who joined
+  socket.broadcast.emit("newMessage",{
+    from: "Admin",
+    text: "New user joined",
+    createdAt: new Date().getTime()
+  });
+
+
   //email from client to server
   socket.on('createMessage', (message)=>{
     console.log("created new Message: ", message);
